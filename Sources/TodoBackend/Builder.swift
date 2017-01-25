@@ -13,8 +13,7 @@ public func Build() -> Titan {
   addTodoCrudRoutes(titan: titan)
 
   // Configure CORS
-  titan.addFunction(RespondToPreflight)
-  titan.addFunction(AllowAllOrigins)
+  TitanCORS.addInsecureCORSSupport(titan)
   return titan
 }
 
