@@ -11,7 +11,7 @@ final class CORSTests: XCTestCase {
     titanInstance = nil
   }
   func testCanAddCorsFunctionToTitan() {
-    titanInstance.addFunction(CrossOriginResourceOptions)
-    titanInstance.addFunction(CrossOriginResourceHeaders)
+    titanInstance.addFunction(RespondToPreflight)
+    titanInstance.addFunction(AllowAllOrigins)
   }
 }
