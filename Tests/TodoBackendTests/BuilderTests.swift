@@ -11,7 +11,7 @@ final class BuilderTests: XCTestCase {
         let _: Titan = Build() // type check only
     }
     func testCreateTodo() {
-        let res = titan.app(request: Request("POST", "/", "{\"title\":\"todo\"}", headers: []))
+        let res = titan.app(request: Request("POST", "/", "{\"title\":\"todo\"}"))
         XCTAssertEqual(res.code, 200)
     }
 }

@@ -5,9 +5,11 @@ public func Build() -> Titan {
   let titan = Titan()
 
   // Default response is 404 Not found
-  titan.addFunction("*") { (_, res) -> Void in
-    res.body = "Not found"
-    res.code = 404
+  titan.addFunction { req, res in
+    var newRes = res.copy()
+    newRes.body = "Not found"
+    newRes.code = 404
+    return (req, res)
   }
 
   addTodoCrudRoutes(titan: titan)
