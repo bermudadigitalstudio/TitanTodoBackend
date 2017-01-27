@@ -6,16 +6,16 @@ final class State {
     var completed: Bool
     var order: Int
     let id: String = UUID().uuidString
-    func encode() -> [String:Any] {
+    func encode(withHost host: String) -> [String:Any] {
       return [
         "title":title,
         "completed":completed,
-        "url":"http://0.0.0.0:8000/todo/\(id)",
+        "url":"http://\(host)/todo/\(id)",
         "order":order
       ]
     }
-    func encoded() -> String {
-      return String(data: try! JSONSerialization.data(withJSONObject: encode(), options: []), encoding: .utf8)!
+    func encoded(withHost host: String) -> String {
+      return String(data: try! JSONSerialization.data(withJSONObject: encode(withHost: host), options: []), encoding: .utf8)!
     }
   }
   private(set) var todos: [String:Todo] = [:]
@@ -28,8 +28,8 @@ final class State {
   func remove(_ id: String) {
     self.todos[id] = nil
   }
-  func encoded() -> String {
-    let jsonAbleTodos = todos.map { $0.value.encode() }
+  func encoded(withHost host: String) -> String {
+    let jsonAbleTodos = todos.map { $0.value.encode(withHost: host) }
     return String(data: try! JSONSerialization.data(withJSONObject: jsonAbleTodos, options: []), encoding: .utf8)!
   }
 }
